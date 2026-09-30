@@ -1,22 +1,22 @@
 package com.example.auditoria.usecase.impl;
 
-import com.example.auditoria.adapter.out.persistence.HallazgoJpaRepository;
 import com.example.auditoria.usecase.ObtenerDashboardAuditoriaUseCase;
 import com.example.auditoria.usecase.port.DashboardAuditoriaView;
+import com.example.auditoria.usecase.port.HallazgoRepositoryPort;
 
 public class ObtenerDashboardAuditoriaService implements ObtenerDashboardAuditoriaUseCase {
-    private final HallazgoJpaRepository jpaRepository;
+    private final HallazgoRepositoryPort repository;
 
-    public ObtenerDashboardAuditoriaService(HallazgoJpaRepository jpaRepository) {
-        this.jpaRepository = jpaRepository;
+    public ObtenerDashboardAuditoriaService(HallazgoRepositoryPort repository) {
+        this.repository = repository;
     }
 
     @Override
     public DashboardAuditoriaView ejecutar() {
         return new DashboardAuditoriaView(
-            jpaRepository.contarPorSeveridad(),
-            jpaRepository.contarPorEstado(),
-            jpaRepository.calcularPromedioDiasPorArea()
+            repository.contarPorSeveridad(),
+            repository.contarPorEstado(),
+            repository.calcularPromedioDiasPorArea()
         );
     }
 }

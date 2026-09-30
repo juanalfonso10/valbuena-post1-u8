@@ -3,7 +3,9 @@ package com.example.auditoria.adapter.out.persistence;
 import com.example.auditoria.domain.entity.HallazgoAuditoria;
 import com.example.auditoria.domain.valueobject.HallazgoId;
 import com.example.auditoria.domain.valueobject.PlanRemediacion;
+import com.example.auditoria.usecase.port.ConteoCategoria;
 import com.example.auditoria.usecase.port.HallazgoRepositoryPort;
+import com.example.auditoria.usecase.port.PromedioCategoria;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -33,6 +35,21 @@ public class HallazgoRepositoryAdapter implements HallazgoRepositoryPort {
     @Override
     public List<HallazgoAuditoria> listarTodos() {
         return jpaRepository.findAll().stream().map(this::toDomain).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ConteoCategoria> contarPorSeveridad() {
+        return jpaRepository.contarPorSeveridad();
+    }
+
+    @Override
+    public List<ConteoCategoria> contarPorEstado() {
+        return jpaRepository.contarPorEstado();
+    }
+
+    @Override
+    public List<PromedioCategoria> calcularPromedioDiasPorArea() {
+        return jpaRepository.calcularPromedioDiasPorArea();
     }
 
     private HallazgoJpaEntity toEntity(HallazgoAuditoria domain) {

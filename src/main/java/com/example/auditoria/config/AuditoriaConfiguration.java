@@ -1,6 +1,5 @@
 package com.example.auditoria.config;
 
-import com.example.auditoria.adapter.out.persistence.HallazgoJpaRepository;
 import com.example.auditoria.usecase.*;
 import com.example.auditoria.usecase.impl.*;
 import com.example.auditoria.usecase.port.HallazgoRepositoryPort;
@@ -46,7 +45,7 @@ public class AuditoriaConfiguration {
     }
 
     @Bean
-    public ObtenerDashboardAuditoriaUseCase obtenerDashboardAuditoriaUseCase(HallazgoJpaRepository jpaRepository) {
-        return new ObtenerDashboardAuditoriaService(jpaRepository);
+    public ObtenerDashboardAuditoriaUseCase obtenerDashboardAuditoriaUseCase(HallazgoRepositoryPort repo) {
+        return new ObtenerDashboardAuditoriaService(repo);
     }
 }

@@ -10,4 +10,8 @@ public interface HallazgoRepositoryPort {
     HallazgoAuditoria guardar(HallazgoAuditoria hallazgo);
     Optional<HallazgoAuditoria> buscarPorId(HallazgoId id);
     List<HallazgoAuditoria> listarTodos();
+
+    List<ConteoCategoria> contarPorSeveridad();
+    List<ConteoCategoria> contarPorEstado();
+    List<PromedioCategoria> calcularPromedioDiasPorArea();
 }
